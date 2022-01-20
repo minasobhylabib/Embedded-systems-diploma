@@ -1,2 +1,0 @@
-# Embedded systems diploma
- 
