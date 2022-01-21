@@ -8,7 +8,7 @@ As=$(wildcard *.s)
 AsOBJ = $(As:.s=.o)
 Project_name=learn_in_depth
 all: $(Project_name).bin
-	@echo "build is done"
+	@echo "=====build is done======"
 	
 %.o: %.s
 	$(CC)as.exe -c $(CFLAGS) $(INGS) $< -o $@
@@ -19,7 +19,7 @@ all: $(Project_name).bin
 $(Project_name).bin : $(Project_name).elf
 	$(CC)objcopy.exe -O binary $< $@
 
-$(Project_name).elf : app.o uart.o startup.o
+$(Project_name).elf : $(AsOBJ) $(OBJ)
 	$(CC)ld.exe -T linker_script.ld$(LIBS) $(AsOBJ) $(OBJ) -o $@ -Map Map_file.map
 	 
 
